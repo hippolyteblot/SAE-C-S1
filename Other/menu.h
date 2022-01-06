@@ -6,6 +6,7 @@
 #include "../Sort/quicksort.h"
 #include "../Search/missing_data_count.h"
 #include "../Other/write_data.h"
+#include "../Other/modify_data.h"
 #include "../Search/filter.h"
 
 
@@ -14,7 +15,7 @@
 void printKeepedData(PERSONNE *tab, int sizeTab){
 
     for(int i = 0; i < sizeTab; i++){
-        if(tab[i].keeped ==  1) printValue(tab[i]);
+        if(tab[i].keeped !=  -1) printValue(&tab[i]);
     }
 }
 
@@ -85,12 +86,32 @@ void menu(PERSONNE *dataTab, int sizeTab){
                 int moins = 0;
                 hashSearch(6, key, sizeTab, hashedTab, &SearchResult);
             }
-            if(SearchResult.start == NULL) printf("Parfait\n\n\n\n");
-            CELL *result = SearchResult.start;
-            printValue(result->value);
-            printf("Que souhaitez vous faire avec ces donnees ?\n");
-            printf("\t1 - Entrer le nom, le prenom et le numero\n");
-            printf("\t2 - Entrer l'adresse mail\n");
+            if(SearchResult.start == NULL) printf("La recherche n'a donnee aucun resultat\n");
+            else{
+                int action;
+                CELL *result = SearchResult.start;
+                printValue(result->value);
+                printf("Que souhaitez vous faire avec ces donnees ?\n");
+                printf("\t1 - Modifier une valeur\n");
+                printf("\t2 - Supprimer cette personne de l'annuaire\n");
+                printf("\t3 - Ne rien faire\n");
+                scanf("%d", &action);
+                switch (action)
+                {
+                case 1:
+                    modifyData(result->value);
+                    break;
+                case 2:
+                    result->value->keeped = -1;
+                    break;
+                case 3:
+                    /* code */
+                    break;
+                
+                default:
+                    break;
+                }
+            }
             
         }
         else{

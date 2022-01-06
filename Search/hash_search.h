@@ -9,7 +9,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
     {
     case 1:
         while (actuel != NULL){
-            if(strcmp(actuel->value.name, key) == 0){
+            if(strcmp(actuel->value->name, key) == 0){
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -19,8 +19,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 2:
         while (actuel != NULL){
-            if(strcmp(actuel->value.surname, key) == 0){
-                actuel->value.keeped = 2;
+            if(strcmp(actuel->value->surname, key) == 0){
+                actuel->value->keeped = 2;
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -30,7 +30,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 3:
         while (actuel != NULL){
-            if(strcmp(actuel->value.city, key) == 0){
+            if(strcmp(actuel->value->city, key) == 0){
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -40,7 +40,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 4:
         while (actuel != NULL){
-            if(strcmp(actuel->value.department, key) == 0)
+            if(strcmp(actuel->value->department, key) == 0)
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -49,7 +49,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 5:
         while (actuel != NULL){
-            if(strcmp(actuel->value.num, key) == 0)
+            if(strcmp(actuel->value->num, key) == 0)
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -58,7 +58,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 6:
         while (actuel != NULL){
-            if(strcmp(actuel->value.mail, key) == 0)
+            if(strcmp(actuel->value->mail, key) == 0)
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);
@@ -67,7 +67,7 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *Search
         break;
     case 7:
         while (actuel != NULL){
-            if(strcmp(actuel->value.job, key) == 0)
+            if(strcmp(actuel->value->job, key) == 0)
                 printValue(actuel->value);
                 if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
                 else insertion(SearchResult, actuel->value);

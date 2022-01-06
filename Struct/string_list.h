@@ -3,7 +3,7 @@
 typedef struct Cell CELL;
 struct Cell{
 
-    PERSONNE value;
+    PERSONNE *value;
     CELL *pt;
 };
 
@@ -13,7 +13,7 @@ struct Liste{
     CELL *start;
 };
 
-Liste *initialisation(PERSONNE tabValue){
+Liste *initialisation(PERSONNE *tabValue){
 
     Liste *liste = malloc(sizeof(*liste));
     CELL *cellule = malloc(sizeof(*cellule));
@@ -30,12 +30,11 @@ Liste *initialisation(PERSONNE tabValue){
     return liste;
 }
 
-void insertion(Liste *liste, PERSONNE value){
+void insertion(Liste *liste, PERSONNE *value){
 
     CELL *new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
     {
-        printf("lol nop\n");
         exit(EXIT_FAILURE);
     }
     new->value = value;

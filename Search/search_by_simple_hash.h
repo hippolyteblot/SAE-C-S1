@@ -74,7 +74,7 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
     hashSearch(type, key, sizeTab, hashedTab, &SearchResult);
 
     CELL *actuel = SearchResult.start;
-    printf("iciiii %s\n", actuel->value.city);
+    printf("iciiii %s\n", actuel->value->city);
     if(actuel == NULL) printf("Il n y a pas de %s dans la liste\n", key); // Pb sur la detection de struct vide
     return moins;
 }

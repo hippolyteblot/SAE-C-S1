@@ -52,9 +52,9 @@ void filter(int type, char *key, int nb_ligne, Liste SearchResult, PERSONNE *dat
                 j++;
             }
             if(isEgal == 1){
-                printValue(dataTab[i]);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(dataTab[i]);
-                else insertion(&SearchResult, dataTab[i]);
+                printValue(&dataTab[i]);
+                if(SearchResult.start == NULL) SearchResult = *initialisation(&dataTab[i]);
+                else insertion(&SearchResult, &dataTab[i]);
             }
         }
     }
@@ -107,9 +107,9 @@ void filter(int type, char *key, int nb_ligne, Liste SearchResult, PERSONNE *dat
                 j--;
             }
             if(isEgal == 1){
-                printValue(dataTab[i]);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(dataTab[i]);
-                else insertion(&SearchResult, dataTab[i]);
+                printValue(&dataTab[i]);
+                if(SearchResult.start == NULL) SearchResult = *initialisation(&dataTab[i]);
+                else insertion(&SearchResult, &dataTab[i]);
             }
         }
     }

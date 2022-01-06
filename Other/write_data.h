@@ -19,7 +19,8 @@ void writeKeepedData(Liste SearchResult, char *nameFile, int nbLine){
     strcat(path, nameFile);
     FILE *fic = fopen(path, "w");
     while (actuel != NULL){
-        fprintf(fic, "%s,%s,%s,%s,%s,%s, %s\n", actuel->value.surname, actuel->value.name, actuel->value.city, actuel->value.department, actuel->value.num, actuel->value.mail, actuel->value.job);
+        if(actuel->value->keeped != -1)
+            fprintf(fic, "%s,%s,%s,%s,%s,%s, %s\n", actuel->value->surname, actuel->value->name, actuel->value->city, actuel->value->department, actuel->value->num, actuel->value->mail, actuel->value->job);
         actuel = actuel->pt;
     }
 }
