@@ -8,6 +8,7 @@
         "string.h": "c",
         "line_count.h": "c",
         "hash_search.h": "c",
-        "load.h": "c"
+        "load.h": "c",
+        "stdlib.h": "c"
     }
 }

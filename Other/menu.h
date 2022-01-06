@@ -1,3 +1,4 @@
+#include "../Struct/string_list.h"
 #include "../Search/hashing.h"
 #include "../Search/hash_search.h"
 #include "../Search/print_hash_result.h"
@@ -5,6 +6,8 @@
 #include "../Sort/quicksort.h"
 #include "../Search/missing_data_count.h"
 #include "../Other/write_data.h"
+#include "../Search/filter.h"
+
 
 
 
@@ -80,6 +83,20 @@ void menu(PERSONNE *dataTab, int sizeTab){
                 searchByMultipleHash(sizeTab, dataTab, &keepedNumber);
                 break;
             }
+        }
+        else{
+            int location;
+            char key[20];
+            Liste SearchResult;
+            printf("Par quel type voulez vous filtrer les donnees ?\n");
+            printf("\t1 - Nom\n\t2 - Prenom\n\t3 - Ville\n\t4 - Departement\n");
+            printf("\t5 - Numero\n\t6 - Mail\n\t7 - Metier\n");
+            scanf("%d", &type);
+            printf("Voulez vous verifier l'existence de la sous-chaine au debut ou a la fin ?(0 = debut, 1 = fin)\n");
+            scanf("%d", &location);
+            printf("Quelle sous-chaine voulez vous rechercher ?\n");
+            scanf("%s", &key);
+            filter(type, key, sizeTab, SearchResult, dataTab, location);
         }
         break;
     case 7: ;
