@@ -71,6 +71,8 @@ void menu(PERSONNE *dataTab, int sizeTab){
             printf("\t1 - Entrer le nom, le prenom et le numero\n");
             printf("\t2 - Entrer l'adresse mail\n");
             scanf("%d", &whichData);
+            Liste SearchResult;
+            SearchResult.start == NULL;
             if(whichData == 1){
                 exit(EXIT_SUCCESS);
             }
@@ -81,17 +83,14 @@ void menu(PERSONNE *dataTab, int sizeTab){
                 char key[20];
                 scanf("%s", &key);
                 int moins = 0;
-                Liste SearchResult;
                 hashSearch(6, key, sizeTab, hashedTab, &SearchResult);
-                CELL *result = SearchResult.start;
-                printf("%s\n", result->value.name);
-                if(result == NULL) printf("Cette adresse ne correspond a aucun nom\n");
-                else{
-                    printValue(result->value);
-                    printf("Que souhaitez vous faire avec ces donnees ?\n");
-                    exit(EXIT_SUCCESS);
-                }
             }
+            if(SearchResult.start == NULL) printf("Parfait\n\n\n\n");
+            CELL *result = SearchResult.start;
+            printValue(result->value);
+            printf("Que souhaitez vous faire avec ces donnees ?\n");
+            printf("\t1 - Entrer le nom, le prenom et le numero\n");
+            printf("\t2 - Entrer l'adresse mail\n");
             
         }
         else{
