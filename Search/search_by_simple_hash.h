@@ -51,7 +51,6 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
             strcpy(keyCopy, key);
             if(key[j] != lsChar[i]){
                 keyCopy[j] = lsChar[i];
-                printf("okkkkkkkk\n");
                 hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
             }
         }

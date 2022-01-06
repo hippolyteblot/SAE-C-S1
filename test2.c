@@ -166,12 +166,6 @@ void insertion(Liste *liste, PERSONNE value){
     CELL *actuel = liste->start;
     new->pt = liste->start;
     liste->start = new;
-    while(actuel->pt != NULL){
-        printf("ouai bon flemme de compter\n");
-        printf("%s\n", actuel->value.name);
-        actuel = actuel->pt;
-    }
-    printf("fini\n");
 }
 
 Liste hashSearch(char *key, int nb_ligne, Liste *hashTab, Liste SearchResult){

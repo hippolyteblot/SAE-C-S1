@@ -4,12 +4,13 @@
 
 void hashTab(int type, PERSONNE *tab, int sizeTab, Liste *hashTab){
 
+    for(int i = 0; i < sizeTab; i++)
+        hashTab[i].start = NULL;
 
     switch (type)
     {
     case 1:
         for(int i = 0; i < sizeTab; i++){
-            
             if(tab[i].name[0] != '\0'){
                 int indice = hash(tab[i].name, sizeTab);
                 if(hashTab[indice].start == NULL){

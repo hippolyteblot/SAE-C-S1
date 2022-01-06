@@ -19,11 +19,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         break;
     case 2:
         while (actuel != NULL){
-            if(actuel == NULL) printf("AHHH JE TAI EU\n");
-            else printf("malheureusement cest ok\n");
             if(strcmp(actuel->value.surname, key) == 0){
                 actuel->value.keeped = 2;
-                printf("ok %d\n", actuel->pt);
                 printValue(actuel->value);
                 if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
                 else insertion(&SearchResult, actuel->value);

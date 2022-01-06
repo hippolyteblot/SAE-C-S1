@@ -32,7 +32,7 @@ Liste *initialisation(PERSONNE tabValue){
 
 void insertion(Liste *liste, PERSONNE value){
 
-    CELL *new = malloc(sizeof(CELL));
+    CELL *new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
     {
         printf("lol nop\n");
