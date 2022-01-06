@@ -5,10 +5,10 @@ PERSONNE cutLine(char *ligne){
     
     PERSONNE x;
     
+    
     int type = 0;
     int pos_type = 0;
     int i = 0;
-
     x.surname[0] = '\0';
     x.name[0] = '\0';
     x.city[0] = '\0';
@@ -76,5 +76,9 @@ PERSONNE cutLine(char *ligne){
         }
         i++;
     }
+
+    //fscanf(&ligne, "%s,%s,%s,%s,%s,%s,%s", &x.surname, &x.name, &x.city, &x.department, &x.num, &x.mail, &x.job);
+    //printValue(x);
+
     return x;
 }

@@ -1,3 +1,6 @@
+#include "compare_string_value.h"
+
+
 void charSwap(PERSONNE *a, PERSONNE *b) 
 { 
     PERSONNE tmp = *a; 

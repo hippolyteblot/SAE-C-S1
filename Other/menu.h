@@ -2,6 +2,10 @@
 #include "../Search/hash_search.h"
 #include "../Search/print_hash_result.h"
 #include "../Search/search_by_simple_hash.h"
+#include "../Sort/quicksort.h"
+#include "../Search/missing_data_count.h"
+#include "../Other/write_data.h"
+
 
 
 void printKeepedData(PERSONNE *tab, int sizeTab){
@@ -93,7 +97,7 @@ void menu(PERSONNE *dataTab, int sizeTab){
         char nameFile[30];
         printf("Rentrez le nom du fichier (il sera enregistre dans Data):\n");
         scanf("%s", &nameFile);
-        //writeKeepedData(, nameFile, sizeTab);
+        writeData(dataTab, nameFile, sizeTab);
         break;
     case 9:
         exit(EXIT_SUCCESS);

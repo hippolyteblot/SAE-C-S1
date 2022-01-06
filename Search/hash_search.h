@@ -10,12 +10,10 @@ Liste hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste Search
     case 1:
         while (actuel != NULL){
             if(strcmp(actuel->value.name, key) == 0){
-                printf("2\n");
                 printValue(actuel->value);
                 if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
                 else insertion(&SearchResult, actuel->value);
             }
-            else printf("3\n");
             actuel = actuel->pt;
         }
         break;
@@ -84,6 +82,6 @@ Liste hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste Search
         break;
     }
     
-    if(actuel == NULL) return ;
+    if(actuel == NULL) return SearchResult;
     return SearchResult;
 }

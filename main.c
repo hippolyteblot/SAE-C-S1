@@ -9,10 +9,8 @@
 #include "Other/line_count.h"
 #include "Other/load.h"
 #include "Other/menu.h"
-#include "Sort/quicksort.h"
-#include "Sort/compare_string_value.h"
-#include "Other/write_data.h"
-#include "Search/missing_data_count.h"
+
+
 
 #define chemin "Data/annuaire.csv"
 
@@ -25,7 +23,7 @@ void main(){
     char allData;
     char fileName[] = "Data/annuaire.csv";
 
-    system("cls");
+
     printf("Bienvenue sur notre logiciel de gestion de donnees.\n");
     printf("Voulez vous charger les donnees du fichier %s ?(O/N)\n", fileName);
     scanf("%c", &chargeData);

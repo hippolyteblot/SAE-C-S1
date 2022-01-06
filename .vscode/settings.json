@@ -3,6 +3,7 @@
         "stdio.h": "c",
         "personne.h": "c",
         "string_list.c": "cpp",
-        "string_list.h": "c"
+        "string_list.h": "c",
+        "time.h": "c"
     }
 }
