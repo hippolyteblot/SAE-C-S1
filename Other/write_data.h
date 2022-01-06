@@ -6,7 +6,7 @@ void writeData(PERSONNE *dataTab, char *nameFile, int nbLine){
     strcat(path, nameFile);
     FILE *fic = fopen(path, "w");
     for(int i = 0; i < nbLine; i++){
-        fprintf(fic, "%s,%s,%s,%s,%s,%s, %s\n", dataTab[i].surname, dataTab[i].name, dataTab[i].city, dataTab[i].department, dataTab[i].num, dataTab[i].mail, dataTab[i].job);   
+        fprintf(fic, "%s,%s,%s,%s,%s,%s,%s\n", dataTab[i].surname, dataTab[i].name, dataTab[i].city, dataTab[i].department, dataTab[i].num, dataTab[i].mail, dataTab[i].job);   
     }
     fclose(fic);
     printf("Les donnees ont bien ete enregistrees dans le fichier %s\n", nameFile);

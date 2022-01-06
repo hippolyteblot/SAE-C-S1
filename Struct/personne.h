@@ -1,7 +1,7 @@
 typedef struct Personne {
 
-    char name[20];
-    char surname[20];
+    char name[30];
+    char surname[30];
     char city[20];
     char department[6];
     char num[15];
