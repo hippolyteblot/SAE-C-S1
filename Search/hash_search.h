@@ -1,7 +1,7 @@
 
 
 
-Liste hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchResult){
+void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchResult){
 
     int hashed = hash(key, nb_ligne);
     CELL *actuel = hashTab[hashed].start;
@@ -81,7 +81,4 @@ Liste hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste Search
     default:
         break;
     }
-    
-    if(actuel == NULL) return SearchResult;
-    return SearchResult;
 }

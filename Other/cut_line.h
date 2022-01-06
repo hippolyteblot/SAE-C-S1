@@ -26,52 +26,59 @@ PERSONNE cutLine(char *ligne){
         else if (ligne[i] == '\n') printf("");
         else {
             if (type == 0){
-            x.surname[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.surname[pos_type] = '\0';
+                if(pos_type > 40){printf("Pb de size surname\n"); exit(EXIT_FAILURE);}
+                x.surname[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.surname[pos_type] = '\0';
             }
 
             if (type == 1){
-            x.name[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.name[pos_type] = '\0';
+                if(pos_type > 40){printf("Pb de size name\n"); exit(EXIT_FAILURE);}
+                x.name[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.name[pos_type] = '\0';
             }
 
             if (type == 2){
-            x.city[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.city[pos_type] = '\0';
+                if(pos_type > 40){printf("Pb de size city\n"); exit(EXIT_FAILURE);}
+                x.city[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.city[pos_type] = '\0';
             }
 
             if (type == 3){
-            x.department[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.department[pos_type] = '\0';
+                if(pos_type > 8){printf("Pb de size department\n"); exit(EXIT_FAILURE);}
+                x.department[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.department[pos_type] = '\0';
             }
 
             if (type == 4){
-            x.num[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.num[pos_type] = '\0';
+                if(pos_type > 15){printf("Pb de size num\n"); exit(EXIT_FAILURE);}
+                x.num[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.num[pos_type] = '\0';
             }
 
             if (type == 5){
-            x.mail[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == ',')
-                x.mail[pos_type] = '\0';
+                if(pos_type > 50){printf("Pb de size mail\n"); exit(EXIT_FAILURE);}
+                x.mail[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == ',')
+                    x.mail[pos_type] = '\0';
             }
 
             if (type == 6){
-            x.job[pos_type] = ligne[i];
-            pos_type++;
-            if (ligne[i+1] == '\n')
-                x.job[pos_type] = '\0';
+                if(pos_type > 40){printf("Pb de size job\n"); exit(EXIT_FAILURE);}
+                x.job[pos_type] = ligne[i];
+                pos_type++;
+                if (ligne[i+1] == '\n')
+                    x.job[pos_type] = '\0';
             }
         }
         i++;
@@ -79,6 +86,8 @@ PERSONNE cutLine(char *ligne){
 
     //fscanf(&ligne, "%s,%s,%s,%s,%s,%s,%s", &x.surname, &x.name, &x.city, &x.department, &x.num, &x.mail, &x.job);
     //printValue(x);
+
+
 
     return x;
 }

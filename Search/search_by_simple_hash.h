@@ -15,12 +15,11 @@ int searchBySimpleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
     char key[20];
     scanf("%s", &key);
     int moins = 0;
-    printf("\n\t%d\n", type);
-    SearchResult = hashSearch(type, key, sizeTab, hashedTab, SearchResult);
+    hashSearch(type, key, sizeTab, hashedTab, SearchResult);
     printf("1\n");
     CELL *actuel = SearchResult.start;
     printf("2\n");
-    if(actuel == NULL) printf("Il n y a pas de %s dans la liste\n", key); // Pb sur la detection de struct vide
+    if(SearchResult.start == NULL) printf("Il n y a pas de %s dans la liste\n", key); // Pb sur la detection de struct vide
     return moins;
 }
 
@@ -42,7 +41,6 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
     char key[20];
     scanf("%s", &key);
     int moins = 0;
-    printf("\n\t%d\n", type);
 
 
     char keyCopy[20];
@@ -53,8 +51,8 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
             strcpy(keyCopy, key);
             if(key[j] != lsChar[i]){
                 keyCopy[j] = lsChar[i];
-                printf("okkkkkkkk");
-                SearchResult = hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+                printf("okkkkkkkk\n");
+                hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
             }
         }
     }
@@ -64,7 +62,7 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
         for(int j = i; j < strlen(key); j++){
             keyCopy[j] = key[j+1];
         }
-        SearchResult = hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+        hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
     }
     for(int i = 0; i < strlen(key)+1; i++){
         for(int j = 0; j < 52; j ++){
@@ -73,10 +71,10 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
                 keyCopy[k] = key[k-1];
             }
             keyCopy[i] = lsChar[j];
-            SearchResult = hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+            hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
         }
     }
-    SearchResult = hashSearch(type, key, sizeTab, hashedTab, SearchResult);
+    hashSearch(type, key, sizeTab, hashedTab, SearchResult);
 
     CELL *actuel = SearchResult.start;
     printf("iciiii %s\n", actuel->value.city);

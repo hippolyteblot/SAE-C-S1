@@ -4,6 +4,10 @@
         "personne.h": "c",
         "string_list.c": "cpp",
         "string_list.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "string.h": "c",
+        "line_count.h": "c",
+        "hash_search.h": "c",
+        "load.h": "c"
     }
 }
