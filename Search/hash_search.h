@@ -1,7 +1,7 @@
 
 
 
-void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchResult){
+void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste *SearchResult){
 
     int hashed = hash(key, nb_ligne);
     CELL *actuel = hashTab[hashed].start;
@@ -11,8 +11,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.name, key) == 0){
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             }
             actuel = actuel->pt;
         }
@@ -22,8 +22,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
             if(strcmp(actuel->value.surname, key) == 0){
                 actuel->value.keeped = 2;
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             }
             actuel = actuel->pt;
         }
@@ -32,8 +32,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.city, key) == 0){
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             }
             actuel = actuel->pt;
         }
@@ -42,8 +42,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.department, key) == 0)
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             actuel = actuel->pt;
         }
         break;
@@ -51,8 +51,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.num, key) == 0)
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             actuel = actuel->pt;
         }
         break;
@@ -60,8 +60,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.mail, key) == 0)
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             actuel = actuel->pt;
         }
         break;
@@ -69,8 +69,8 @@ void hashSearch(int type, char *key, int nb_ligne, Liste *hashTab, Liste SearchR
         while (actuel != NULL){
             if(strcmp(actuel->value.job, key) == 0)
                 printValue(actuel->value);
-                if(SearchResult.start == NULL) SearchResult = *initialisation(actuel->value);
-                else insertion(&SearchResult, actuel->value);
+                if(SearchResult->start == NULL) *SearchResult = *initialisation(actuel->value);
+                else insertion(SearchResult, actuel->value);
             actuel = actuel->pt;
         }
         break;

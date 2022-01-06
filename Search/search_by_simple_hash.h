@@ -15,10 +15,8 @@ int searchBySimpleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
     char key[20];
     scanf("%s", &key);
     int moins = 0;
-    hashSearch(type, key, sizeTab, hashedTab, SearchResult);
-    printf("1\n");
+    hashSearch(type, key, sizeTab, hashedTab, &SearchResult);
     CELL *actuel = SearchResult.start;
-    printf("2\n");
     if(SearchResult.start == NULL) printf("Il n y a pas de %s dans la liste\n", key); // Pb sur la detection de struct vide
     return moins;
 }
@@ -51,7 +49,7 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
             strcpy(keyCopy, key);
             if(key[j] != lsChar[i]){
                 keyCopy[j] = lsChar[i];
-                hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+                hashSearch(type, keyCopy, sizeTab, hashedTab, &SearchResult);
             }
         }
     }
@@ -61,7 +59,7 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
         for(int j = i; j < strlen(key); j++){
             keyCopy[j] = key[j+1];
         }
-        hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+        hashSearch(type, keyCopy, sizeTab, hashedTab, &SearchResult);
     }
     for(int i = 0; i < strlen(key)+1; i++){
         for(int j = 0; j < 52; j ++){
@@ -70,10 +68,10 @@ int searchByMultipleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
                 keyCopy[k] = key[k-1];
             }
             keyCopy[i] = lsChar[j];
-            hashSearch(type, keyCopy, sizeTab, hashedTab, SearchResult);
+            hashSearch(type, keyCopy, sizeTab, hashedTab, &SearchResult);
         }
     }
-    hashSearch(type, key, sizeTab, hashedTab, SearchResult);
+    hashSearch(type, key, sizeTab, hashedTab, &SearchResult);
 
     CELL *actuel = SearchResult.start;
     printf("iciiii %s\n", actuel->value.city);

@@ -34,7 +34,7 @@ void menu(PERSONNE *dataTab, int sizeTab){
     printf("Que souhaitez vous faire ?\n");
     printf("\t1 - Afficher les donnees (%d au total)\n", keepedNumber);
     printf("\t2 - Trier les donnees\n");
-    printf("\t3 - Rechercher/filtrer les donnees\n");
+    printf("\t3 - Rechercher (pour eventuellement modificatier ou supprimer des valeurs)/filtrer les donnees\n");
     printf("\t4 - Reinitialiser les donnees retenues\n");
     printf("\t5 - Ajouter une personne\n");
     printf("\t6 - Supprimer une personne\n");
@@ -64,39 +64,70 @@ void menu(PERSONNE *dataTab, int sizeTab){
         printf("\t2 - Filtre\n");
         scanf("%d", &searchOrFilter);
         if(searchOrFilter == 1){
-            int searchType;
-            printf("Voulez vous effectuer une recherche stricte (hachage simple), ");
-            printf("une recherche approximative a un caractere pres (hachage approximatif), ");
-            printf("ou une recherche de sous-chaine a l'interieur des valeurs ");
-            printf("(algorithme de Boyer-Moore) ? \n");
-            printf("\t1 - Recherche stricte\n");
-            printf("\t2 - Recherche approximative\n");
-            printf("\t3 - Recherche de sous-chaine\n");
-            scanf("%d", &searchType);
-            switch (searchType)
-            {
-            case 1:
-                searchBySimpleHash(sizeTab, dataTab, &keepedNumber);
-                break;
-            
-            default:
-                searchByMultipleHash(sizeTab, dataTab, &keepedNumber);
-                break;
+            int whichData;
+            printf("Pour rechercher une personne precise, vous allez devoir renseigner son nom, son prenom ");
+            printf("ainsi que son numero de telephone ou simplement son adresse mail.\n");
+            printf("Que preferez vous ?\n");
+            printf("\t1 - Entrer le nom, le prenom et le numero\n");
+            printf("\t2 - Entrer l'adresse mail\n");
+            scanf("%d", &whichData);
+            if(whichData == 1){
+                exit(EXIT_SUCCESS);
             }
+            else{
+                Liste hashedTab[sizeTab];
+                hashTab(6, dataTab, sizeTab, hashedTab);
+                printf("Veuillez entrer l'adresse mail de la personne a rechercher :\n");
+                char key[20];
+                scanf("%s", &key);
+                int moins = 0;
+                Liste SearchResult;
+                hashSearch(6, key, sizeTab, hashedTab, &SearchResult);
+                CELL *result = SearchResult.start;
+                printf("%s\n", result->value.name);
+                if(result == NULL) printf("Cette adresse ne correspond a aucun nom\n");
+                else{
+                    printValue(result->value);
+                    printf("Que souhaitez vous faire avec ces donnees ?\n");
+                    exit(EXIT_SUCCESS);
+                }
+            }
+            
         }
         else{
-            int location;
-            char key[20];
-            Liste SearchResult;
-            printf("Par quel type voulez vous filtrer les donnees ?\n");
-            printf("\t1 - Nom\n\t2 - Prenom\n\t3 - Ville\n\t4 - Departement\n");
-            printf("\t5 - Numero\n\t6 - Mail\n\t7 - Metier\n");
-            scanf("%d", &type);
-            printf("Voulez vous verifier l'existence de la sous-chaine au debut ou a la fin ?(0 = debut, 1 = fin)\n");
-            scanf("%d", &location);
-            printf("Quelle sous-chaine voulez vous rechercher ?\n");
-            scanf("%s", &key);
-            filter(type, key, sizeTab, SearchResult, dataTab, location);
+            int choice;
+            printf("Voulez vous afficher les personnes ayant une valeur en particulier ou voulez ");
+            printf("vous rechercher une sous-chaine au debut ou a la fin d'une attribut ?\n");
+            printf("\t1 - Rechercher un attribut\n");
+            printf("\t2 - Rechercher une sous-chaine\n");
+            scanf("%d", &choice);
+            if(choice == 1){
+
+                int searchType;
+                printf("Voulez vous effectuer une recherche stricte (hachage simple) ou ");
+                printf("une recherche approximative a un caractere pres (hachage approximatif) ? \n");
+                printf("\t1 - Recherche stricte\n");
+                printf("\t2 - Recherche approximative\n");
+                scanf("%d", &searchType);
+                if(searchType == 1)
+                    searchBySimpleHash(sizeTab, dataTab, &keepedNumber);
+                else
+                    searchByMultipleHash(sizeTab, dataTab, &keepedNumber);
+            }
+            else{
+                int location;
+                char key[20];
+                Liste SearchResult;
+                printf("Par quel type voulez vous filtrer les donnees ?\n");
+                printf("\t1 - Nom\n\t2 - Prenom\n\t3 - Ville\n\t4 - Departement\n");
+                printf("\t5 - Numero\n\t6 - Mail\n\t7 - Metier\n");
+                scanf("%d", &type);
+                printf("Voulez vous verifier l'existence de la sous-chaine au debut ou a la fin ?(0 = debut, 1 = fin)\n");
+                scanf("%d", &location);
+                printf("Quelle sous-chaine voulez vous rechercher ?\n");
+                scanf("%s", &key);
+                filter(type, key, sizeTab, SearchResult, dataTab, location);
+            }
         }
         break;
     case 7: ;
