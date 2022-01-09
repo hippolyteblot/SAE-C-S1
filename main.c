@@ -10,7 +10,7 @@
 #include "Other/load.h"
 #include "Other/menu.h"
 #include "menu.h"
-
+#include "global.h"
 
 
 #define chemin "Data/annuaire.csv"
@@ -28,7 +28,20 @@ void main(){
     printf("Bienvenue sur notre logiciel de gestion de donnees.\n");
     Mdir("quel fichier voulez vous charger?");
 
+    FILE *fic = fopen(path, "r");
+    if(fic == NULL){
+        printf("Impossible d'ouvrir le fichier\n");
+        exit(EXIT_FAILURE);
+    }
+    PERSONNE *dataTab;
+    dataTab = malloc(sizeof(PERSONNE)*nbLineCharge);
+    load(dataTab, fic, nbLineCharge);
+    fclose(fic);
+    printf("Le fichier a ete charge.\n");
 
+    while(1){
+        menu(dataTab, nbLineCharge);
+    }
 
 
 
@@ -50,7 +63,7 @@ void main(){
             printf("Combien de lignes voulez vous charger ?\n");
             scanf("%d", &nbLineCharge);
         }
-        
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         FILE *fic = fopen(fileName, "r");
         if(fic == NULL){
             printf("Impossible d'ouvrir le fichier\n");
