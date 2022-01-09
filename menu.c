@@ -74,11 +74,12 @@ int Mselect(char legend[],int n , ...){
     int key=64;
     //---------boucle de selection----------------------
     while(key != 13){
+        //--------------------boucle d'affichage--------------------------
         system("cls");
         puts(legend);
 
-        key=64;
-        //--------------------boucle d'affichage--------------------------
+
+
         for(int j=0;j<n;j++){
 
             if(select==j)Color(0, 15);
@@ -91,11 +92,13 @@ int Mselect(char legend[],int n , ...){
             key=getch();
             if(key==80 && select<n-1)select+=1;
             if(key==72 && select>0)select-=1;
-
+            key=224;
         }
-        if(key==27)return -1;
-        key==224;
-}
+        else if(key==27){
+            return -1;
+        }
+
+    }
     return select;
 }
 
