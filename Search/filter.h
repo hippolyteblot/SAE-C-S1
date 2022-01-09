@@ -3,6 +3,11 @@
 
 void filter(int type, char *key, int nb_ligne, Liste SearchResult, PERSONNE *dataTab, int location){
 
+    clock_t beginFilter = clock();
+    clock_t beginPrint;
+    clock_t endPrint;
+    unsigned long millisPrint = 0;
+    
     if(location == 0){
         for(int i = 0; i < nb_ligne; i++){
             int j = 0;
@@ -52,7 +57,11 @@ void filter(int type, char *key, int nb_ligne, Liste SearchResult, PERSONNE *dat
                 j++;
             }
             if(isEgal == 1){
+                beginPrint = clock();
                 printValue(&dataTab[i]);
+                endPrint = clock();
+                millisPrint += endPrint - beginPrint;
+
                 if(SearchResult.start == NULL) SearchResult = *initialisation(&dataTab[i]);
                 else insertion(&SearchResult, &dataTab[i]);
             }
@@ -107,11 +116,21 @@ void filter(int type, char *key, int nb_ligne, Liste SearchResult, PERSONNE *dat
                 j--;
             }
             if(isEgal == 1){
+                beginPrint = clock();
                 printValue(&dataTab[i]);
+                endPrint = clock();
+                millisPrint += endPrint - beginPrint;
+
                 if(SearchResult.start == NULL) SearchResult = *initialisation(&dataTab[i]);
                 else insertion(&SearchResult, &dataTab[i]);
             }
         }
     }
-
+    clock_t endFilter = clock();
+    millisPrint = millisPrint * 1000 / CLOCKS_PER_SEC;
+    unsigned long millisFilter = ((endFilter -  beginFilter) * 1000 / CLOCKS_PER_SEC) - millisPrint;
+    printf("\n");
+    printf("Temps d'execution du filtre: %ld ms\n", millisFilter);
+    printf("Temps d'execution de l'affichage des resultats: %ld ms\n", millisPrint);
+    printf("\n");
 }

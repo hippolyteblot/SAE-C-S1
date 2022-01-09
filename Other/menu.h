@@ -29,19 +29,15 @@ void menu(PERSONNE *dataTab, int sizeTab){
     printf("Vous pouvez maintenant appliquer des filtres, ");
     printf("effectuer des recherches et afficher les donnees retenues apres ");
     printf("l'application de ces conditions\n");
-    printf("Si vous effectuer plusieurs filtres ou recherches, les donnees ");
-    printf("retenues seront celles correspondants a tous ces criteres.\n");
 
     printf("Que souhaitez vous faire ?\n");
     printf("\t1 - Afficher les donnees (%d au total)\n", keepedNumber);
     printf("\t2 - Trier les donnees\n");
     printf("\t3 - Rechercher (pour eventuellement modificatier ou supprimer des valeurs)/filtrer les donnees\n");
-    printf("\t4 - Reinitialiser les donnees retenues\n");
-    printf("\t5 - Ajouter une personne\n");
-    printf("\t6 - Supprimer une personne\n");
-    printf("\t7 - Rechercher le nombre de personne pour lequels un champ est manquant\n");
-    printf("\t8 - Creer un nouveau fichier avec les donnees actuelles\n");
-    printf("\t9 - Quitter\n");
+    printf("\t4 - Ajouter une personne\n"); // A faire
+    printf("\t5 - Rechercher le nombre de personne pour lequels un champ est manquant\n");
+    printf("\t6 - Creer un nouveau fichier avec les donnees actuelles\n");
+    printf("\t7 - Quitter\n");
     printf("Rentrez le nombre correspondant\n");
 
     scanf("%d", &actionChoice);
@@ -56,7 +52,12 @@ void menu(PERSONNE *dataTab, int sizeTab){
         printf("\t1 - Nom\n\t2 - Prenom\n\t3 - Ville\n\t4 - Departement\n");
         printf("\t5 - Numero\n\t6 - Mail\n\t7 - Metier\n");
         scanf("%d", &type);
+        clock_t beginSort = clock();
         quickSort(dataTab, 0, sizeTab-1, type);
+        clock_t endSort = clock();
+        unsigned long millisSort = (endSort -  beginSort) * 1000 / CLOCKS_PER_SEC;
+        printf("Temps d'execution du tri: %ld ms\n", millisSort);
+
         break;
     case 3:
 
@@ -150,7 +151,7 @@ void menu(PERSONNE *dataTab, int sizeTab){
             }
         }
         break;
-    case 7: ;
+    case 5: ;
         int count[7] = {0, 0, 0, 0, 0, 0, 0};
         missingDataCount(dataTab, sizeTab, count);
         printf("%d ont un nom non renseigne\n", count[0]);
@@ -161,13 +162,13 @@ void menu(PERSONNE *dataTab, int sizeTab){
         printf("%d ont un mail non renseigne\n", count[5]);
         printf("%d ont un metier non renseigne\n", count[6]);
         break;
-    case 8:;
+    case 6:;
         char nameFile[30];
         printf("Rentrez le nom du fichier (il sera enregistre dans Data):\n");
         scanf("%s", &nameFile);
         writeData(dataTab, nameFile, sizeTab);
         break;
-    case 9:
+    case 7:
         exit(EXIT_SUCCESS);
         break;
     default:
