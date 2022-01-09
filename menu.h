@@ -7,9 +7,9 @@
 
 void Color(int couleurDuTexte,int couleurDeFond);
 int get_confirmation(char reponse_par_default);
-Mselect(char legend[],int n , ...);
-Mtype();
-Minput(char legend[],int lenght,char input[]);
-Mdir();
+int Mselect(char legend[],int n , ...);
+int Mtype();
+int Minput(char legend[],int lenght,char input[]);
+int Mdir(char legend[]);
 
 #endif //SAE_C_ALGO_MENU_H

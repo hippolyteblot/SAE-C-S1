@@ -254,7 +254,7 @@ int countdir(char path[]){//-----------------------------------
     while ((entry = readdir(dirp)) != NULL) {
         //puts("found");//------
             if(entry->d_name[strlen(entry->d_name)-1]=='v' && entry->d_name[strlen(entry->d_name)-2]=='s' && entry->d_name[strlen(entry->d_name)-3]=='c' && entry->d_name[strlen(entry->d_name)-4]=='.') {
-                puts(entry->d_name);
+                //puts(entry->d_name);
                 file_count++;
             }
 
@@ -264,7 +264,7 @@ int countdir(char path[]){//-----------------------------------
 return file_count;
 
 }//----------------------------------------------------------------------
-int Mdir(){
+int Mdir(char legend[]){
     char save_path[30]={"Data"};
     /*
      * retourne -1 si erreur
@@ -276,8 +276,10 @@ int Mdir(){
 
     //-----------------------------------------------test error-----------------
     if(save==NULL){/* Dossier inexistant */
-        printf("le fichier de sauvegarde %s n'existe pas\n",save_path);
-        return -1;
+        printf("le dossier de sauvegarde %s n'existe pas\n",save_path);
+        printf("voulez vous le creer[O/n]");
+        if(get_confirmation('o')) mkdir("Data");
+        else return -1;
     }
     if (errno == EACCES) { /* Accès interdit */
         puts("Acces interdit");
@@ -304,9 +306,10 @@ int Mdir(){
    //---------------------------------------real function------------------------------------------------
    int key=64;
     int line_selected=0;
-    char import[30]={0};
+    char import[70]={0};
     while(key != 13) {
         system("cls");
+        puts(legend);
         //-----------------------------affichage------------------------------
         for (int i = 0; i < c; i++) {
             if (i == line_selected)Color(0, 15);
@@ -314,12 +317,24 @@ int Mdir(){
             Color(15, 0);
         }
         if(line_selected==c)Color(0, 15);
-        printf("importer: %s",import);
+        printf("importer: %s\n",import);
+        Color(15, 0);
+        if(fopen(import,"r")==NULL){
+            Color(4, 0);
+            printf("fichier introuvable");
+        }else{
+            Color(2, 0);
+            printf("fichier exitant");
+
+        }
         Color(15, 0);
 
-        printf("\n\n%d",key);
+
+
+
         key=getch();
 
+        //-----------------------------gestion de l'ecriture et de mouvement--------------
             if(key==224 ){
                 key = getch();
                 if (key == 80 && line_selected < c) { line_selected += 1; }
@@ -338,10 +353,10 @@ int Mdir(){
                 }
 
             }
-            else if( key <= 'z' && key >= 'A' ) {
+            else if( key <= 'z' && key >= 'A' || key==':' || key=='_' || key=='.') {
 
 
-                if (line_selected == c && strlen(import)<30) {
+                if (line_selected == c && strlen(import)<50) {
                     import[strlen(import) + 1] = '\0';
                     import[strlen(import)] = key;
                 }
