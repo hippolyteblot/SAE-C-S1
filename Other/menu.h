@@ -43,14 +43,15 @@ void menu(PERSONNE *dataTab, int sizeTab){
 
     scanf("%d", &actionChoice);
     */
-    Mselect("Que souhaitez vous faire ?",7
+    actionChoice = Mselect("Que souhaitez vous faire ?",7
             ,"\t1 - Afficher les donnees"
             ,"\t2 - Trier les donnees"
             ,"\t3 - Rechercher (pour eventuellement modificatier ou supprimer des valeurs)/filtrer les donnees"
             ,"\t4 - Ajouter une personne"
             ,"\t5 - Rechercher le nombre de personne pour lequels un champ est manquant"
             ,"\t6 - Creer un nouveau fichier avec les donnees actuelles"
-            ,"\t7 - Quitter");
+            ,"\t7 - Quitter")+1;
+    system("cls");
     switch (actionChoice)
     {
     case 1:
