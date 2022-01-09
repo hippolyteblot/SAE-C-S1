@@ -307,6 +307,7 @@ int Mdir(char legend[]){
    int key=64;
     int line_selected=0;
     char import[70]={0};
+    char name[20]={0};
     while(key != 13) {
         system("cls");
         puts(legend);
@@ -317,18 +318,24 @@ int Mdir(char legend[]){
             Color(15, 0);
         }
         if(line_selected==c)Color(0, 15);
+        puts("");
         printf("importer: %s\n",import);
         Color(15, 0);
+
         if(fopen(import,"r")==NULL){
             Color(4, 0);
-            printf("fichier introuvable");
+            printf("fichier introuvable\n");
         }else{
             Color(2, 0);
-            printf("fichier exitant");
+            printf("fichier exitant\n");
 
         }
         Color(15, 0);
-
+        if(line_selected==c+1)Color(0, 15);
+        printf("nom du nouveau fichier: %s\n",name);
+        Color(4, 0);
+        puts("!!!attention il n'y a pas de protection de reecriture fichier!!!");
+        Color(15, 0);
 
 
 
@@ -337,16 +344,30 @@ int Mdir(char legend[]){
         //-----------------------------gestion de l'ecriture et de mouvement--------------
             if(key==224 ){
                 key = getch();
-                if (key == 80 && line_selected < c) { line_selected += 1; }
+                if (key == 80 && line_selected < c+1) { line_selected += 1; }
                 if (key == 72 && line_selected > 0) { line_selected -= 1; }
                 key = 224;
             }
             else if(key== 13) {
+
                 if (line_selected < c)
                     strcpy(save_path, file[line_selected]);
-                //else import();
+                else if(line_selected=c && fopen(import,"r")!=NULL){
+                    char new_path[30];
+
+                    strcpy(new_path,"Data\\");
+                    strcat(new_path,name);
+                    FILE *old=NULL;
+                    FILE *new=NULL;
+                    old=fopen(import,"r");
+                    new=fopen(new_path,"w");
+                    while(!feof(old)){
+                        fprintf(new,"%c",fgetc(old));
+                    }
+
+                }
             }
-            else if(key==47){
+            else if(key==47){// "/"
                 if (line_selected == c && strlen(import)<25) {
                     import[strlen(import) + 1] = '\0';
                     import[strlen(import)] = '\\';
@@ -356,16 +377,22 @@ int Mdir(char legend[]){
             else if( key <= 'z' && key >= 'A' || key==':' || key=='_' || key=='.') {
 
 
-                if (line_selected == c && strlen(import)<50) {
+                if (line_selected == c && strlen(import)<49) {
                     import[strlen(import) + 1] = '\0';
                     import[strlen(import)] = key;
                 }
-            }
-            else if(key==8)
-                if (line_selected == c && strlen(import)>0) {
-                    import[strlen(import)-1] = '\0';
+                else if (line_selected == c+1 && strlen(name)<19) {
+                    name[strlen(name) + 1] = '\0';
+                    name[strlen(name)] = key;
                 }
-
+            }
+            else if(key==8) {
+                if (line_selected == c && strlen(import) > 0) {
+                    import[strlen(import) - 1] = '\0';
+                } else if (line_selected == c+1 && strlen(name) > 0) {
+                    name[strlen(name) - 1] = '\0';
+                }
+            }
 
         }
 
