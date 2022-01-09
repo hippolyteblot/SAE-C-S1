@@ -8,7 +8,7 @@
 #include "../Other/write_data.h"
 #include "../Other/modify_data.h"
 #include "../Search/filter.h"
-
+#include "../menu.h"
 
 
 
@@ -25,11 +25,12 @@ void menu(PERSONNE *dataTab, int sizeTab){
     int actionChoice;
     int keepedNumber = sizeTab;
     int searchOrFilter;
-
+/*
     printf("Vous pouvez maintenant appliquer des filtres, ");
     printf("effectuer des recherches et afficher les donnees retenues apres ");
     printf("l'application de ces conditions\n");
-
+*/
+/*
     printf("Que souhaitez vous faire ?\n");
     printf("\t1 - Afficher les donnees (%d au total)\n", keepedNumber);
     printf("\t2 - Trier les donnees\n");
@@ -41,6 +42,15 @@ void menu(PERSONNE *dataTab, int sizeTab){
     printf("Rentrez le nombre correspondant\n");
 
     scanf("%d", &actionChoice);
+    */
+    Mselect("Que souhaitez vous faire ?",7
+            ,"\t1 - Afficher les donnees"
+            ,"\t2 - Trier les donnees"
+            ,"\t3 - Rechercher (pour eventuellement modificatier ou supprimer des valeurs)/filtrer les donnees"
+            ,"\t4 - Ajouter une personne"
+            ,"\t5 - Rechercher le nombre de personne pour lequels un champ est manquant"
+            ,"\t6 - Creer un nouveau fichier avec les donnees actuelles"
+            ,"\t7 - Quitter");
     switch (actionChoice)
     {
     case 1:

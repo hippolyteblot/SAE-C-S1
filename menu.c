@@ -59,7 +59,7 @@ int Mselect(char legend[],int n , ...){
      * sinon retourne une valeur entre 0 et le nombre d'entré n-1
      */
 
-    printf("%s",legend);
+
 
     va_list ap;
 
@@ -75,15 +75,15 @@ int Mselect(char legend[],int n , ...){
     //---------boucle de selection----------------------
     while(key != 13){
         system("cls");
-        printf("%d %d\n",select,key);
+        puts(legend);
+
         key=64;
         //--------------------boucle d'affichage--------------------------
         for(int j=0;j<n;j++){
-            printf("\t");
-            if(select==j)printf("->");
-            else printf("  ");
 
+            if(select==j)Color(0, 15);
             printf("%s\n",parametre[j]);
+            Color(15, 0);
         }
     //------------position selection-------------------
         key=getch();
