@@ -9,6 +9,7 @@
 #include "Other/line_count.h"
 #include "Other/load.h"
 #include "Other/menu.h"
+#include "menu.h"
 
 
 
@@ -25,17 +26,24 @@ void main(){
 
 
     printf("Bienvenue sur notre logiciel de gestion de donnees.\n");
-    printf("Voulez vous charger les donnees du fichier %s ?(O/N)\n", fileName);
-    scanf("%c", &chargeData);
-    fgetc(stdin);
-    if(chargeData == 'O' || chargeData == 'o'){
+    Mdir("quel fichier voulez vous charger");
+
+
+
+
+
+    /*
+    printf("Voulez vous charger les donnees du fichier %s ?[O/n]\n", fileName);
+
+
+    if(get_confirmation("o")){
 
         int nbLine = lineCount(fileName);
 
-        printf("Voulez vous charger tout le fichier (%d lignes au total) ?(O/N)\n", nbLine);
-        scanf("%c", &allData);
-        fgetc(stdin);
-        if(allData == 'O' || allData == 'o'){
+        printf("Voulez vous charger tout le fichier (%d lignes au total) ?[O/n]\n", nbLine);
+
+
+        if(get_confirmation("o")){
             nbLineCharge = nbLine;
         }
         else{
@@ -73,4 +81,5 @@ void main(){
             }
         }
     }
+     */
 }
