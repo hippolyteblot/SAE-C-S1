@@ -6,6 +6,7 @@
 #include<windows.h>
 #include<dirent.h>
 #include <errno.h>
+#include "global.h"
 #include "menu.h"
 
 void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
@@ -265,10 +266,10 @@ return file_count;
 
 }//----------------------------------------------------------------------
 int Mdir(char legend[]){
-    char save_path[30]={"Data"};
+    char save_path[]={"Data"};
     /*
      * retourne -1 si erreur
-     *
+     * change directement la source du fichier
      */
     DIR *save = NULL;
     struct dirent* fichierLu = NULL;
@@ -334,9 +335,9 @@ int Mdir(char legend[]){
         if(line_selected==c+1)Color(0, 15);
         printf("nom du nouveau fichier: %s\n",name);
         Color(4, 0);
-        puts("!!!attention il n'y a pas de protection de reecriture fichier!!!");
+        puts("!!!attention il n'y a pas de protection de reecriture fichier!!! et n'oubliez pas de preciser l'extention \".csv\"");
         Color(15, 0);
-
+        printf("fichier actuelle: %s",path);
 
 
         key=getch();
@@ -351,7 +352,7 @@ int Mdir(char legend[]){
             else if(key== 13) {
 
                 if (line_selected < c)
-                    strcpy(save_path, file[line_selected]);
+                    strcpy(path, file[line_selected]);
                 else if(line_selected=c && fopen(import,"r")!=NULL){
                     char new_path[30];
 
@@ -364,7 +365,7 @@ int Mdir(char legend[]){
                     while(!feof(old)){
                         fprintf(new,"%c",fgetc(old));
                     }
-
+                    strcpy(path, new_path);
                 }
             }
             else if(key==47){// "/"
