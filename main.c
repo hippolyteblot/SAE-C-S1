@@ -26,7 +26,7 @@ void main(){
 
 
     printf("Bienvenue sur notre logiciel de gestion de donnees.\n");
-    Mdir("quel fichier voulez vous charger");
+    Mdir("quel fichier voulez vous charger?");
 
 
 
