@@ -27,7 +27,8 @@ void main(){
 
     printf("Bienvenue sur notre logiciel de gestion de donnees.\n");
     Mdir("quel fichier voulez vous charger?");
-
+    system("cls");
+    puts("[chargement...] veuillez patienter");
     FILE *fic = fopen(path, "r");
     if(fic == NULL){
         printf("Impossible d'ouvrir le fichier\n");
