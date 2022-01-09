@@ -57,7 +57,8 @@ void main(){
             exit(EXIT_FAILURE);
         }
 
-        PERSONNE dataTab[nbLineCharge];
+        PERSONNE *dataTab;
+        dataTab = malloc(sizeof(PERSONNE)*nbLineCharge);
         load(dataTab, fic, nbLineCharge);
         fclose(fic);
         printf("Le fichier a ete charge.\n");

@@ -9,15 +9,24 @@ int searchBySimpleHash(int sizeTab, PERSONNE *dataTab, int *keepedNumber){
     printf("\t5 - Numero\n\t6 - Mail\n\t7 - Metier\n");
     scanf("%d", &type);
 
-
+    clock_t beginHash = clock();
+    
     hashTab(type, dataTab, sizeTab, hashedTab);
+
+    clock_t endHash = clock();
+    unsigned long millisHash = (endHash -  beginHash) * 1000 / CLOCKS_PER_SEC;
+    printf("\n");
+
     printf("Que voulez vous rechercher ?\n");
     char key[20];
     scanf("%s", &key);
     int moins = 0;
+    
     hashSearch(type, key, sizeTab, hashedTab, &SearchResult);
-    CELL *actuel = SearchResult.start;
-    if(SearchResult.start == NULL) printf("Il n y a pas de %s dans la liste\n", key); // Pb sur la detection de struct vide
+    printf("Temps d'execution du hachage: %ld ms\n", millisHash);
+    printf("\n");
+    
+
     return moins;
 }
 
